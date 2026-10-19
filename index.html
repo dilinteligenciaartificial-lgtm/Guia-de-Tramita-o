@@ -78,12 +78,13 @@ dialog::backdrop{background:rgba(0,0,0,.5)}
 #db{padding:8px 14px;overflow:auto;max-height:60vh}#db p{margin:0 0 8px;font-size:.95rem}
 #db .cp{font-weight:700}#db .sb{margin-left:18px}#db .hl{background:var(--hl);border-radius:6px;padding:4px 6px}
 .dn{padding:8px 14px;border-top:1px solid var(--ln);color:var(--mu);font-size:.82rem}
+.dsub{margin:0 0 8px;color:var(--mu);font-size:.92rem}
 </style>
 </head>
 <body>
 <header><div class="w">
 <h1>Guia de Tramitação · SGP e SRT</h1>
-<input id="q" type="search" placeholder="Digite o assunto do processo (ex.: licença gestante, prova de vida, CPNU)" autocomplete="off" aria-label="Buscar assunto">
+<input id="q" type="search" placeholder="Assunto, sigla ou nome da unidade (ex.: prova de vida, DECIPEX)" autocomplete="off" aria-label="Buscar assunto">
 <div class="bar"><div class="seg" role="group" aria-label="Secretaria"><button data-s="" aria-pressed="true">Todas</button><button data-s="SGP" aria-pressed="false">SGP</button><button data-s="SRT" aria-pressed="false">SRT</button></div><span id="n"></span></div>
 </div></header>
 <main><div class="w">
@@ -93,7 +94,7 @@ dialog::backdrop{background:rgba(0,0,0,.5)}
 </div>
 <details class="how" open><summary>Como usar este guia</summary>
 <ol class="st">
-<li><i>1</i><b>Digite o assunto</b><span>Use as palavras do processo: licença gestante, prova de vida, CPNU.</span></li>
+<li><i>1</i><b>Digite o assunto</b><span>Use as palavras do processo (licença gestante, prova de vida) ou a sigla e o nome da Diretoria ou Coordenação (DECIPEX, CG de Pagamento).</span></li>
 <li><i>2</i><b>Leia o card</b><span>Veja o que a unidade cuida. Toque no card para ver como o processo costuma chegar.</span></li>
 <li><i>3</i><b>Ficou em dúvida?</b><span>Abra <a href="#peg">Assuntos que confundem</a>: o mesmo tema pode ir para unidades diferentes.</span></li>
 <li><i>4</i><b>Confira o artigo</b><span>Toque em <button class="ar" data-sec="SGP" data-art="99">Art. 99</button> para ler o texto do regimento antes de tramitar.</span></li>
@@ -169,14 +170,28 @@ function card(u,m){const k=u[6].split(','),sh=k.slice(0,5),rest=k.slice(5),on=m&
 const hit=x=>on&&m.some(t=>wm(nz(x),t));
 const ch=a=>a.map(x=>`<span class="${hit(x)?'m':''}">${x}</span>`).join('');
 const art=(n,i)=>`<button class="ar" data-sec="${u[1]}" data-art="${n}" data-inc="${i||''}">Art. ${n}${i?' · '+i:''}</button>`;
-const ex=on?(EX[u[0]]||[]).filter(e=>m.every(t=>wm(nz(e[0]+' '+e[3]),t))).slice(0,8):(TY[u[0]]||[]);
+const fl=on?(EX[u[0]]||[]).filter(e=>m.every(t=>wm(nz(e[0]+' '+e[3]),t))).slice(0,8):[],ex=fl.length?fl:(TY[u[0]]||[]);
 const un=e=>/^(Coordenação-Geral|Diretoria|Gabinete)/.test(e[3])?'':`<small> · ${e[3]}</small>`;
-const exh=ex.length?`<div class="ex"><b>${on?'Situações que combinam':'Como o processo costuma chegar'}</b><ul>${ex.map(e=>`<li><span>${e[0]}${un(e)}</span>${art(e[1],e[2])}</li>`).join('')}</ul></div>`:'';
-return `<div class="c ${u[1]}" id="u-${u[0]}" tabindex="0"><h3>${u[3]}</h3><p>${u[5]}</p><div class="k">${ch(sh)}</div><div class="more" ${on?'':'hidden'}>${exh}<div class="k">${ch(rest)}</div></div><small>${u[1]} · ${CA[u[0]].map(n=>art(n)).join(' ')} · <span class="tg">toque no artigo para ler o texto</span></small></div>`}
+const exh=ex.length?`<div class="ex"><b>${fl.length?'Situações que combinam':'Como o processo costuma chegar'}</b><ul>${ex.map(e=>`<li><span>${e[0]}${un(e)}</span>${art(e[1],e[2])}</li>`).join('')}</ul></div>`:'';
+return `<div class="c ${u[1]}" id="u-${u[0]}" tabindex="0"><h3>${u[3]}</h3><p>${u[5]}</p><div class="k">${ch(sh)}</div><div class="more" ${fl.length?'':'hidden'}>${exh}<div class="k">${ch(rest)}</div></div><small>${u[1]}${SG(u)?' · '+SG(u):''} · ${CA[u[0]].map(n=>art(n)).join(' ')} · <span class="tg">toque no artigo para ler o texto</span></small></div>`}
 const BL=Object.fromEntries(U.map(u=>[u[0],nz((EX[u[0]]||[]).map(e=>e[0]+' '+e[3]).join(' | '))]));
-function render(){const tk=nz($('#q').value).split(/\s+/).filter(Boolean),q=tk.length>1?tk.filter(t=>t.length>2):tk;let list=U.filter(u=>!sec||u[1]===sec),h='';
-if(q.length){list=list.map(u=>{const n=nz(u[3]),d=nz(u[5]),k=nz(u[6]),b=BL[u[0]];let s=0;for(const t of q){const a=(wm(n,t)?3:0)+(wm(k,t)?2:0)+(wm(d,t)?1:0)+(wm(b,t)?1:0);if(!a){s=0;break}s+=a}return[u,s]}).filter(x=>x[1]).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
-h=list.length?`<div class="g">${list.map(u=>card(u,q)).join('')}</div>`:'<div class="e">Nada encontrado. Tente uma palavra mais simples ou veja “Assuntos que confundem” abaixo.</div>'}
+const DN={DEPRO:'Diretoria de Planejamento da Força de Trabalho',DECAR:'Diretoria de Carreiras e Desenvolvimento de Pessoas',DESIN:'Diretoria de Soluções Digitais',DIGID:'Diretoria de Governança e Inteligência de Dados',DECIPEX:'Diretoria de Serviços de Aposentados e de Pensionistas e Órgãos Extintos',r1:'Diretoria de Benefícios, Previdência e Atenção à Saúde',r2:'Diretoria de Relações de Trabalho no Serviço Público',r3:'Diretoria de Prevenção e Enfrentamento do Assédio e da Discriminação'};
+const SG=u=>{const t=D[u[2]][0];return t.includes(' · ')?t.split(' · ')[0]:''};
+const FN=u=>u[3].replace(/^CG de/,'Coordenação-Geral de').replace(/^Coord\. de/,'Coordenação de');
+const HN=Object.fromEntries(U.map(u=>[u[0],nz([u[1],u[1]==='SGP'?'Secretaria de Gestão de Pessoas':'Secretaria de Relações de Trabalho',SG(u),DN[u[2]]||'',FN(u)].join(' '))]));
+function resHTML(list,q){
+const dk=u=>nz(SG(u)+' '+(DN[u[2]]||'')),dm=u=>DN[u[2]]&&q.every(t=>wm(dk(u),t));
+const dirs=[];list.forEach(u=>{if(dm(u)){const k=u[1]+'|'+u[2];if(!dirs.includes(k))dirs.push(k)}});
+if(!dirs.length)return `<div class="g">${list.map(u=>card(u,q)).join('')}</div>`;
+let h='';
+dirs.forEach(k=>{const[s,d]=k.split('|'),all=U.filter(u=>u[1]===s&&u[2]===d);
+h+=`<h2><span class="tag ${s}">${s}</span>${SG(all[0])} · ${DN[d]}</h2><p class="dsub">Unidades que fazem parte desta Diretoria (${all.length}): Coordenações-Gerais e Coordenações.</p><div class="g">${all.map(u=>card(u,[])).join('')}</div>`});
+const rest=list.filter(u=>!dm(u));
+if(rest.length)h+=`<h2>Outros resultados que citam o termo</h2><div class="g">${rest.map(u=>card(u,q)).join('')}</div>`;
+return h}
+function render(){const tk=nz($('#q').value).split(/[^a-z0-9]+/).filter(Boolean),q=tk.length>1?tk.filter(t=>t.length>2):tk;let list=U.filter(u=>!sec||u[1]===sec),h='';
+if(q.length){list=list.map(u=>{const n=nz(u[3])+' '+HN[u[0]],d=nz(u[5]),k=nz(u[6]),b=BL[u[0]];let s=0;for(const t of q){const a=(wm(n,t)?3:0)+(wm(k,t)?2:0)+(wm(d,t)?1:0)+(wm(b,t)?1:0);if(!a){s=0;break}s+=a}return[u,s]}).filter(x=>x[1]).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
+h=list.length?resHTML(list,q):'<div class="e">Nada encontrado. Tente uma palavra mais simples ou veja “Assuntos que confundem” abaixo.</div>'}
 else{const ks=[];list.forEach(u=>{const key=u[1]+'|'+u[2];if(!ks.includes(key))ks.push(key)});
 h=ks.map(key=>{const[s,d]=key.split('|');return `<h2><span class="tag ${s}">${s}</span>${D[d][0]}</h2><div class="g">${list.filter(u=>u[1]===s&&u[2]===d).map(u=>card(u)).join('')}</div>`}).join('')}
 $('#res').innerHTML=h;$('#n').textContent=list.length+' unidades'}
