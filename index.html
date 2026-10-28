@@ -43,11 +43,13 @@ h2{font-size:1.1rem;margin:22px 0 8px;display:flex;gap:8px;align-items:center;fl
 .c small{color:var(--mu)}
 .k{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
 .k span{font-size:.78rem;padding:1px 8px;border-radius:99px;background:var(--bg);border:1px solid var(--ln)}
-.k span.m{background:var(--hl)}
+.k span.m{background:#ffd633;color:#14212e;border-color:#e0a800;font-weight:700}
 .c .top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:4px}.why{font-size:.75rem;color:var(--mu)}
 .c p.dsc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.c.open p.dsc{display:block;overflow:visible}
-.mk{background:var(--hl);color:inherit;border-radius:3px;padding:0 2px;font-weight:700;box-shadow:inset 0 -2px #e0a800}
-.mk2{background:color-mix(in srgb,var(--hl) 50%,transparent);color:inherit;border-radius:3px;padding:0 2px;box-shadow:inset 0 -2px color-mix(in srgb,#e0a800 55%,transparent)}
+.mk{background:#ffd633;color:#14212e;border-radius:3px;padding:0 2px;font-weight:700}
+.mk2{background:#fff0a8;color:#14212e;border-radius:3px;padding:0 2px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mk{background:#ffd633;color:#14212e}:root:not([data-theme="light"]) .mk2{background:#a8892b;color:#fff}}
+:root[data-theme="dark"] .mk{background:#ffd633;color:#14212e}:root[data-theme="dark"] .mk2{background:#a8892b;color:#fff}
 .c .ft{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.vm{font:inherit;font-size:.8rem;border:0;background:none;color:var(--sgp);cursor:pointer;text-decoration:underline;margin-left:auto;padding:2px 4px}.c .ft .dp{font-weight:600}.pgc{margin:0 0 10px}.pgc>summary{cursor:pointer;list-style:none;background:var(--sf);border:2px solid #e0a800;border-radius:10px;padding:10px 14px;font-weight:700}.pgc>summary::-webkit-details-marker{display:none}.pgc[open]>summary{border-radius:10px 10px 0 0}.pgc>.in{border:2px solid #e0a800;border-top:0;border-radius:0 0 10px 10px;padding:8px 10px;background:var(--bg)}.lst{margin-top:4px;font-size:.85rem}.lst summary{cursor:pointer;color:var(--sgp)}.lst ul{margin:4px 0 0;padding-left:18px}
 .rest[hidden]{display:none}.acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .ans{background:var(--sf);border:2px solid #e0a800;border-radius:10px;padding:10px 14px;margin:0 0 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.92rem}.ans>b{font-size:.95rem}
@@ -115,7 +117,7 @@ dialog::backdrop{background:rgba(0,0,0,.5)}
 .st a{color:var(--sgpt)}
 .pgbox{margin-bottom:14px}
 .sem{margin:6px 0}.sem b{font-size:.82rem;color:var(--mu)}.sem div{margin-top:4px}.sem i{font-style:normal;font-weight:700;font-size:.85rem;margin-right:4px}
-.sem span{display:inline-block;font-size:.78rem;padding:1px 8px;margin:2px 3px 0 0;border-radius:99px;background:var(--bg);border:1px solid var(--ln)}.sem span.m{background:var(--hl)}
+.sem span{display:inline-block;font-size:.78rem;padding:1px 8px;margin:2px 3px 0 0;border-radius:99px;background:var(--bg);border:1px solid var(--ln)}.sem span.m{background:#ffd633;color:#14212e;border-color:#e0a800;font-weight:700}
 .smn{font-size:.85rem;color:var(--mu);margin:4px 0}
 .orgl{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:8px 0 4px;padding:0}.orgl li{background:var(--bg);border:1px solid var(--ln);border-radius:99px;padding:2px 10px;font-size:.88rem}
 .orgbox ul{list-style:none;margin:6px 0;padding:0}.orgbox li{padding:4px 0;border-top:1px dashed var(--ln)}.orgbox li small{color:var(--mu)}
@@ -220,15 +222,15 @@ const SRC={SGP:"Regimento Interno da SGP (Anexo XV, revisado – Portaria 5 RI M
 const ORG=[["Órgãos centralizados","A DECIPEX atende as demandas destes órgãos centralizados.",["Ministério do Desenvolvimento, Indústria, Comércio e Serviços (MDIC)","Ministério do Empreendedorismo, da Microempresa e da Empresa de Pequeno Porte","(Antigo) Ministério da Economia","Ministério da Fazenda (MF)","Ministério da Gestão e da Inovação em Serviços Públicos (MGI)","Ministério da Infraestrutura","Ministério do Planejamento e Orçamento (MPO)","Ministério dos Portos e Aeroportos","Ministério dos Povos Indígenas (MPI)","Ministério da Previdência Social","Ministério do Trabalho (MTE)","Ministério dos Transportes (MT)","Procuradoria-Geral da Fazenda Nacional (PGFN)","Receita Federal do Brasil (RFB)","Médicos peritos do INSS","Imprensa Nacional (IN)","Ex-territórios (Rondônia, Amapá e Roraima)"]],["Órgãos extintos","A DECIPEX atende as demandas de pessoal vinculadas a estes órgãos extintos.",["Antigo Estado da Guanabara (Bombeiro e Polícia Militar)","Roquete Pinto","Sudene","Demec","Decip","Sudam","Ex-território de Noronha e Acre","RFFSA (apenas ferroviários aposentados e pensionistas complementados)","DNER","Ministério do Bem-estar Social"]],["Anistiados políticos","Se o ex-servidor for de um dos órgãos extintos abaixo, a DECIPEX realiza a gestão documental dos acervos funcionais.",["Companhia Nordestina de Serviços Gerais - CONESG","Companhia Brasileira de Infraestrutura Fazendária - INFAZ","Companhia de Navegação Lloyd Brasileiro - LLOYD","Companhia Siderúrgica de Mogi das Cruzes - COSIM","Companhia Siderúrgica do Amazonas S/A - SIDERAMA","Companhia Usinas Nacionais - CUN","Delegacias do MEC - DEMEC","Departamento Administrativo do Serviço Público - DASP","Departamento de Estradas e Rodagem - DNER/Presidência","Departamento Nacional de Obras de Saneamento - DNOS","Empresa Brasileira de Transportes Urbanos - EBTU","Empresa de Portos do Brasil - PORTOBRÁS","Ex-território de Noronha e Acre","Fundação Brasil Central - FBC","Fundação Legião Brasileira de Assistência - FLBA","Fundação Projeto Rondon","Roquete Pinto","Grupo Executivo de Integração da Política de Transportes - GEIPOT","Instituto Brasileiro do Café - IBC","Instituto do Açúcar e do Álcool - IAA","Ministério da Ação Social - MAS","Ministério da Administração Federal e Reforma do Estado - MARE","Ministério da Habitação e Bem Estar Social - MBES","Ministério da Integração Regional - MIR","Ministério da Previdência e Assistência Social - MPAS","Ministério de Viações e Obras Públicas - MVOP","Ministério do Interior - MINTER","Ministério do Planejamento e Coordenação Econômica - MPCE","Ministério do Planejamento e Coordenação Geral - MPCG","Rede Federal de Armazéns Gerais Ferroviários S.A. - AGEF","Secretaria de Administração Federal - SAF","Secretaria de Administração Pública - SEDAP","Secretaria de Desenvolvimento Regional - SDR","Secretaria de Planejamento e Coordenação da Presidência da República - SEPLAN","Serviço Federal de Habitação e Urbanismo - SERFHAU","Superintendência de Desenvolvimento da Região Sul - SUDESUL","Superintendência Desenvolvimento Amazônia - SUDAM","Superintendência do Desenvolvimento do Nordeste - SUDENE"]]];
 const byId=Object.fromEntries(U.map(u=>[u[0],u]));let sec='';
 const hlq=(t,q,sy)=>{if(!t||!(q&&q.length||sy&&sy.length))return t;const n=nz(t);if(n.length!==t.length)return t;let o='',i=0,mm;const re=/[a-z0-9]+/g;while((mm=re.exec(n))){const w=mm[0];if(n[mm.index-1]==='&')continue;let L=0,c='mk';for(const x of (q||[]))if(w.startsWith(x)&&x.length>L)L=x.length;if(!L)for(const x of (sy||[]))if(w.startsWith(x)&&x.length>L){L=x.length;c='mk2'}if(L){o+=t.slice(i,mm.index)+'<mark class="'+c+'">'+t.slice(mm.index,mm.index+w.length)+'</mark>';i=mm.index+w.length}}return o+t.slice(i)};
-function card(u,m){const k=u[6].split(','),sh=k.slice(0,5),rest=k.slice(5),on=m&&m.length;
-const hit=x=>on&&m.some(t=>wm(nz(x),t));
+function card(u,m,hq){const k=u[6].split(','),sh=k.slice(0,5),rest=k.slice(5),on=m&&m.length,hm=on?m:(hq||[]);
+const hit=x=>hm.length&&hm.some(t=>wm(nz(x),t));
 const ch=a=>a.map(x=>`<span class="${hit(x)?'m':''}">${x}</span>`).join('');
 const art=(n,i)=>`<button class="ar" data-sec="${u[0]==='ceext'?'CEEXT':u[1]}" data-art="${n}" data-inc="${i||''}">Art. ${n}${i?' · '+i:''}</button>`;
 const fl=on?(EX[u[0]]||[]).filter(e=>m.every(t=>wm(nz(e[0]+' '+e[3]),t))).slice(0,8):[],ex=fl.length?fl:(TY[u[0]]||[]);
 const un=e=>/^(Coordenação-Geral|Diretoria|Gabinete)/.test(e[3])?'':`<small> · ${e[3]}</small>`;
 const sh2=SEM[u[0]]||[],sm=on?sh2.filter(s=>m.some(t=>wm(nz(s[0]+' '+s[1].join(' ')),t))):[];
 const sem=sh2.length?`<div class="sem"><b>Palavras do mesmo campo</b>${sh2.map(s=>`<div><i>${s[0]}</i> ${s[1].map(w=>`<span class="${hit(w)?'m':''}">${w}</span>`).join('')}</div>`).join('')}</div>`:'';
-const syn=on?[...new Set(sm.flatMap(s=>s[1]).filter(w=>!/\s/.test(w)&&w.length>3).map(nz).filter(w=>!m.some(t=>w.startsWith(t))))]:[],H=t=>on?hlq(t,m,syn):t;
+const syn=on?[...new Set(sm.flatMap(s=>s[1]).filter(w=>!/\s/.test(w)&&w.length>3).map(nz).filter(w=>!m.some(t=>w.startsWith(t))))]:[],H=t=>hm.length?hlq(t,hm,syn):t;
 const whyA=[];if(on)m.forEach(t=>{let w;const nmz=nz(u[3])+' '+(HN[u[0]]||'');if(wm(nmz,t))w='nome';else{const kw=k.find(x=>wm(nz(x),t));if(kw)w='palavra «'+kw.trim()+'»';else{const g=sh2.find(s=>wm(nz(s[0]+' '+s[1].join(' ')),t));if(g){const ww=g[1].find(x=>wm(nz(x),t));w='campo «'+g[0]+(ww&&nz(ww)!==nz(g[0])?': '+ww:'')+'»'}else if(fl.length)w='situação';else if(wm(nz(u[5]),t))w='descrição'}}if(w&&!whyA.includes(w))whyA.push(w)});
 const exh=ex.length?`<div class="ex"><b>${fl.length?'Situações que combinam':'Como o processo costuma chegar'}</b><ul>${ex.map(e=>`<li><span>${H(e[0])}${un(e)}</span>${art(e[1],e[2])}</li>`).join('')}</ul></div>`:'';
 const opn=!!fl.length;
@@ -291,14 +293,14 @@ const par=nk.length&&ek.length&&nk.length<=2&&ek.length<=2?`<div class="ans par"
 const li=idx.slice(0,10).map(i=>{const r=VT[i];return `<li><span><b>${hlq(esc(r[3]),q)}</b>${r[4]&&r[4]!==r[3]?' — '+hlq(esc(r[4]),q):''}${r[6]?`<small class="ob"> · ${hlq(esc(r[6]),q)}</small>`:''}<br>${vchips(r)}</span><button class="${r[0]}" data-v="${r[1]}">${r[0]} · ${esc(r[1])}</button></li>`}).join('');
 return{n:idx.length,par,dirs:[...new Set(idx.map(i=>VT[i][1]))],html:`<div class="pgbox"><h2>Assuntos encontrados</h2><details class="pg" open><summary>${idx.length} linha${idx.length>1?'s':''} com esse assunto (Diretoria que cuida e o que ela faz)</summary><ul>${li}</ul>${idx.length>10?`<p class="nt" style="padding:0 12px 10px">Mostrando 10 de ${idx.length}. Digite mais palavras para refinar.</p>`:''}</details></div>`}}
 document.addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(!b)return;e.stopPropagation();$('#q').value=b.dataset.v;sec='';document.querySelectorAll('.seg button').forEach((x,i)=>x.setAttribute('aria-pressed',i===0));render();window.scrollTo({top:0,behavior:'smooth'})});
-const grid=(arr,q,lim)=>{const cs=arr.map(u=>card(u,q));if(!lim||cs.length<=lim)return `<div class="g">${cs.join('')}</div>`;return `<div class="g">${cs.slice(0,lim).join('')}</div><div class="g rest" hidden>${cs.slice(lim).join('')}</div><button class="mr" type="button">Ver mais ${cs.length-lim} resultado${cs.length-lim>1?'s':''}</button>`};
+const grid=(arr,q,lim,hq)=>{const cs=arr.map(u=>card(u,q,hq));if(!lim||cs.length<=lim)return `<div class="g">${cs.join('')}</div>`;return `<div class="g">${cs.slice(0,lim).join('')}</div><div class="g rest" hidden>${cs.slice(lim).join('')}</div><button class="mr" type="button">Ver mais ${cs.length-lim} resultado${cs.length-lim>1?'s':''}</button>`};
 function resHTML(list,q){
 const dk=u=>nz(SG(u)+' '+(DN[u[2]]||'')),dm=u=>DN[u[2]]&&q.every(t=>wm(dk(u),t));
 const dirs=[];list.forEach(u=>{if(dm(u)){const k=u[1]+'|'+u[2];if(!dirs.includes(k))dirs.push(k)}});
 if(!dirs.length)return grid(list,q,5);
 let h='';
 dirs.forEach(k=>{const[s,d]=k.split('|'),all=U.filter(u=>u[1]===s&&u[2]===d);
-h+=`<h2><span class="tag ${s}">${s}</span>${SG(all[0])} · ${DN[d]}</h2><p class="dsub">Unidades que fazem parte desta Diretoria (${all.length}): Coordenações-Gerais e Coordenações.</p>${d==='DECIPEX'?orgBlock():''}${grid(all,[],5)}`});
+h+=`<h2><span class="tag ${s}">${s}</span>${hlq(SG(all[0])+' · '+DN[d],q)}</h2><p class="dsub">Unidades que fazem parte desta Diretoria (${all.length}): Coordenações-Gerais e Coordenações.</p>${d==='DECIPEX'?orgBlock():''}${grid(all,[],5,q)}`});
 const rest=list.filter(u=>!dm(u));
 if(rest.length)h+=`<h2>Outros resultados que citam o termo</h2>${grid(rest,q,5)}`;
 return h}
@@ -333,7 +335,7 @@ $('#pegs').innerHTML=P.map(p=>pegHTML(p,0)).join('');
 $('#pegs').addEventListener('click',pegClick);$('#res').addEventListener('click',pegClick);
 const orgFlat=ORG.flatMap((g,i)=>g[2].map(n=>[n,g[0],nz(n)]));
 function orgBlock(){const n=ORG.reduce((s,g)=>s+g[2].length,0);return `<details class="pg orgdet"><summary>Órgãos atendidos por esta Diretoria (${n})</summary><div style="padding:0 12px 10px">${ORG.map((g,i)=>`<details class="pg"${i===0?' open':''}><summary>${g[0]} (${g[2].length})</summary><div style="padding:0 12px 10px"><p class="dsub">${g[1]}</p><ul class="orgl">${g[2].map(x=>`<li>${x}</li>`).join('')}</ul></div></details>`).join('')}</div></details>`}
-function orgBox(q){const m=orgFlat.filter(o=>q.every(t=>wm(o[2],t)));if(!m.length||m.length>8)return '';return `<div class="pgbox orgbox"><h2><span class="tag SGP">SGP</span>Órgão atendido pela DECIPEX</h2><ul>${m.map(o=>`<li>${o[0]} <small>· ${o[1]}</small></li>`).join('')}</ul><button class="orgq" data-q="DECIPEX">Ver as unidades da DECIPEX</button></div>`}
+function orgBox(q){const m=orgFlat.filter(o=>q.every(t=>wm(o[2],t)));if(!m.length||m.length>8)return '';return `<div class="pgbox orgbox"><h2><span class="tag SGP">SGP</span>Órgão atendido pela DECIPEX</h2><ul>${m.map(o=>`<li>${hlq(o[0],q)} <small>· ${o[1]}</small></li>`).join('')}</ul><button class="orgq" data-q="DECIPEX">Ver as unidades da DECIPEX</button></div>`}
 document.addEventListener('click',e=>{const b=e.target.closest('.orgq,.orgv');if(!b)return;e.stopPropagation();$('#q').value='DECIPEX';sec='';document.querySelectorAll('.seg button').forEach((x,i)=>x.setAttribute('aria-pressed',i===0));render();const d=document.querySelector('.orgdet');if(d){d.open=true;d.scrollIntoView({block:'center',behavior:'smooth'})}});
 
 let dsU=null;
