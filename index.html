@@ -230,7 +230,7 @@ const fl=on?(EX[u[0]]||[]).filter(e=>m.every(t=>wm(nz(e[0]+' '+e[3]),t))).slice(
 const un=e=>/^(Coordenação-Geral|Diretoria|Gabinete)/.test(e[3])?'':`<small> · ${e[3]}</small>`;
 const sh2=SEM[u[0]]||[],sm=on?sh2.filter(s=>m.some(t=>wm(nz(s[0]+' '+s[1].join(' ')),t))):[];
 const sem=sh2.length?`<div class="sem"><b>Palavras do mesmo campo</b>${sh2.map(s=>`<div><i>${s[0]}</i> ${s[1].map(w=>`<span class="${hit(w)?'m':''}">${w}</span>`).join('')}</div>`).join('')}</div>`:'';
-const syn=on?[...new Set(sm.flatMap(s=>s[1]).filter(w=>!/\s/.test(w)&&w.length>3).map(nz).filter(w=>!m.some(t=>w.startsWith(t))))]:[],H=t=>hm.length?hlq(t,hm,syn):t;
+const syn=[],H=t=>hm.length?hlq(t,hm,syn):t;
 const whyA=[];if(on)m.forEach(t=>{let w;const nmz=nz(u[3])+' '+(HN[u[0]]||'');if(wm(nmz,t))w='nome';else{const kw=k.find(x=>wm(nz(x),t));if(kw)w='palavra «'+kw.trim()+'»';else{const g=sh2.find(s=>wm(nz(s[0]+' '+s[1].join(' ')),t));if(g){const ww=g[1].find(x=>wm(nz(x),t));w='campo «'+g[0]+(ww&&nz(ww)!==nz(g[0])?': '+ww:'')+'»'}else if(fl.length)w='situação';else if(wm(nz(u[5]),t))w='descrição'}}if(w&&!whyA.includes(w))whyA.push(w)});
 const exh=ex.length?`<div class="ex"><b>${fl.length?'Situações que combinam':'Como o processo costuma chegar'}</b><ul>${ex.map(e=>`<li><span>${H(e[0])}${un(e)}</span>${art(e[1],e[2])}</li>`).join('')}</ul></div>`:'';
 const opn=!!fl.length;
@@ -257,7 +257,7 @@ cgcpnu:[['CPNU',['bloco temático','lista de espera','banca organizadora','edita
 cgdft:[['Força de trabalho',['déficit de pessoal','lotação ideal','cargo vago','redistribuição de vagas','metodologia']]],
 cgalc:[['Carreiras',['progressão funcional','estabilidade','acúmulo de cargos','incorporação','vantagem pessoal','transposição','direito adquirido']]],
 cgddp:[['Desempenho',['teletrabalho','programa de gestão','metas','desenvolvimento de lideranças','reconhecimento']]],
-cgac:[['Carreiras e remuneração',['plano de cargos','tabela salarial','reajuste','vencimento básico','projeto de lei','militares','polícia']]],
+cgac:[['Carreiras e remuneração',['plano de cargos','tabela salarial','reajuste','vencimento básico','equiparação salarial','projeto de lei','militares','polícia']]],
 cgaad:[['Administrativo',['prestação de contas','material de consumo','e-SIC','Fala.BR','Boletim de Gestão de Pessoas','protocolo','arquivo']]],
 cgpag:[['Folha de aposentados',['contracheque','imposto de renda','pagamento a maior','devolução','exercícios anteriores','CADIN']]],
 cgben:[['Aposentadoria e pensão',['aposentadoria por invalidez','aposentadoria voluntária','revisão de proventos','pensão por morte','dependente','habilitação','pensão temporária','instituidor']],['Outros benefícios',['isenção de IR','doença grave','auxílio natalidade','INSS','RGPS']]],
