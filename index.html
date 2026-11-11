@@ -344,7 +344,7 @@ if(q.length){vb=vtBox(q);list=list.map(u=>{const n=nz(u[3])+' '+HN[u[0]],d=nz(u[
 h=list.length?resHTML(list,q):(vb.n?'<div class="e">Nenhuma unidade tem essa palavra no nome ou nas situações. Use a Diretoria indicada acima (toque na sigla).</div>':'<div class="e">Nada encontrado. Tente uma palavra mais simples ou veja “Assuntos que confundem ou passam por mais de uma unidade” abaixo. <a class="nul" href="#nu">Não é da sua unidade? Veja o que fazer.</a></div>')}
 else{const ks=[];list.forEach(u=>{const key=u[1]+'|'+u[2];if(!ks.includes(key))ks.push(key)});
 h=ks.map(key=>{const[s,d]=key.split('|');return `<h2>${IC(d,s)}<span class="tag ${s}">${s}</span>${D[d][0]}</h2>${d==='DECIPEX'?orgBlock():''}<div class="g">${list.filter(u=>u[1]===s&&u[2]===d).map(u=>card(u)).join('')}</div>`}).join('')}
-document.querySelectorAll('.how,.intro').forEach(x=>x.open=!q.length);
+document.querySelectorAll('.how:not(.nu),.intro').forEach(x=>x.open=!q.length);
 if(q.length){const ob=orgBox(q);if(!list.length&&ob)h='';const pb2=pegBox(q);
 const cd=new Set(list.slice(0,3).map(u=>SG(u)));let one=cd.size===1&&[...cd][0]?[...cd][0]:'';if(one&&vb.dirs&&vb.dirs.length&&!(vb.dirs.length===1&&vb.dirs[0]===one))one='';
 const ans=vb.par?vb.par:(one&&DK[one]?`<div class="ans"><b>Para este assunto:</b><button class="${DK[one][0]}" data-v="${one}">${DK[one][0]} · ${one}</button><small>Confira o card abaixo antes de tramitar.</small></div>`:'');
